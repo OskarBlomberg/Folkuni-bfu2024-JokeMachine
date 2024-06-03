@@ -12,7 +12,7 @@ const programmingJokes = [
 ];
 
 let jokes = [];
-let originalJokes = programmingJokes.map((content, index) => {
+let activeJokes = programmingJokes.map((content, index) => {
   //Mappa över skämten till en annan array för att kunna behålla originalnumreringen.
 
   let [question, answer] = content.split(/(?<=\?)\s+/);
@@ -26,15 +26,15 @@ let originalJokes = programmingJokes.map((content, index) => {
 });
 
 function getJoke() {
-  if (originalJokes.length === 0) {
+  if (activeJokes.length === 0) {
     console.log("No more jokes available!");
     return null;
   }
 
-  let jokeIndex = Math.floor(Math.random() * originalJokes.length);
-  let joke = originalJokes[jokeIndex];
+  let jokeIndex = Math.floor(Math.random() * activeJokes.length);
+  let joke = activeJokes[jokeIndex];
 
-  originalJokes.splice(jokeIndex, 1); //Från index där skämet finns tas 1 skämt bort.
+  activeJokes.splice(jokeIndex, 1); //Från index där skämet finns tas 1 skämt bort.
   jokes.push(joke);
   return joke;
 }
